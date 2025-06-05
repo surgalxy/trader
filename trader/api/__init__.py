@@ -1,5 +1,5 @@
 """API wrappers for external services."""
 
-from .hyperliquid import HyperLiquidAPI
+from .hyperliquid import APIError, HyperLiquidAPI
 
-__all__ = ["HyperLiquidAPI"]
+__all__ = ["HyperLiquidAPI", "APIError"]
