@@ -1,6 +1,6 @@
 # Trader
 
-A minimal project for experimenting with automated trading using a simple agent and a wrapper for the HyperLiquid API.
+A minimal project for experimenting with automated trading using a simple agent and wrappers for both the HyperLiquid REST API and the official HyperLiquid SDK.
 
 ## Setup
 
@@ -47,8 +47,11 @@ response = agent.place_order("ETH-USD", quantity=1.0, side="buy")
 print(response)
 ```
 
-To access additional endpoints using the official Hyperliquid SDK you can use
-``HyperLiquidSDK`` which wraps ``hyperliquid-python-sdk``:
+### HyperLiquid SDK integration
+
+The project also exposes ``HyperLiquidSDK``, a lightweight wrapper around the
+official `hyperliquid-python-sdk`. Use this helper when you need access to
+endpoints that are not covered by the minimal REST client.
 
 ```python
 from trader.api import HyperLiquidSDK
