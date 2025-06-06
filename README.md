@@ -23,7 +23,15 @@ export HYPERLIQUID_API_SECRET="<your-api-secret>"
 ```
 
 An example configuration file is provided in `config.example.json`. Copy it to
-`config.json` and adjust the values as needed.
+`config.json` and adjust the values as needed.  The configuration also accepts
+fields for the Hyperliquid SDK:
+
+```json
+{
+  "account_address": "<your-main-wallet-public-key>",
+  "secret_key": "<your-api-wallet-private-key>"
+}
+```
 
 ## Usage
 
@@ -31,12 +39,23 @@ Instantiate the `TradingAgent` with a configured `HyperLiquidAPI` instance and p
 
 ```python
 from trader import TradingAgent
-from trader.api import HyperLiquidAPI
+from trader.api import HyperLiquidAPI, HyperLiquidSDK
 
 api = HyperLiquidAPI(base_url="https://api.hyperliquid.xyz")
 agent = TradingAgent(api)
 response = agent.place_order("ETH-USD", quantity=1.0, side="buy")
 print(response)
+```
+
+To access additional endpoints using the official Hyperliquid SDK you can use
+``HyperLiquidSDK`` which wraps ``hyperliquid-python-sdk``:
+
+```python
+from trader.api import HyperLiquidSDK
+
+sdk = HyperLiquidSDK(account_address="<pubkey>", secret_key="<private>")
+state = sdk.user_state()
+print(state)
 ```
 
 ### Running the trading agent
